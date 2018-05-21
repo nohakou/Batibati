@@ -1,9 +1,9 @@
+import * as actionTypes from './authActionTypes';
 
-const CREATE_USER = 'CREATE_USER';
-export function createUser(name,emailAddress,passWord){
+export function createUser(teamName,emailAddress,passWord) {
   return {
-    type: ActionType.CREATE_USER ,
-    name:name,
+    type: actionTypes.CREATE_USER,
+    teamName:teamName,
     emailAddress:emailAddress,
     passWord:passWord
   };

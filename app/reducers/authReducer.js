@@ -1,19 +1,19 @@
-import * as authAction from './../actions/authAction';
+import * as actionTypes from './../actions/authActionTypes';
 
 const initialState = {
     user : {
-      name: '',
+      teamName: '',
       emailAddress:'',
       passWord:''
   }
 }
 
-const authReducer = (state = initialState, authAction) => {
-  switch (authAction.type) {
-    case CREATE_USER:
+export const authReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.CREATE_USER:
       return Object.assign({},state,{
         user : {
-          name:action.name,
+          teamName:action.teamName,
           emailAddress:action.emailAddress,
           passWord:action.passWord
         }

@@ -1,15 +1,22 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { createUser } from './../../actions/authAction.js';
-import { SignUp } from './SignUp';
+import { createUser } from './../../actions/authAction';
+import SignUp from './SignUp';
 
-function mapDispatchToProps(dispatch) {
+const mapStateToProps = (state) => {
   return {
-    onPress(teamName,emailAddress,passWord) {
+      teamName:state.teamName,
+      emailAddress:state.emailAddress,
+      passWord:state.passWord
+    }
+  };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onPress(teamName,emailAddress,passWord){
       dispatch(createUser(teamName,emailAddress,passWord));
     }
   };
 }
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
