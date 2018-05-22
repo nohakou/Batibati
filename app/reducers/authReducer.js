@@ -17,7 +17,8 @@ export const authReducer = (state = initialState, action) => {
           emailAddress:action.emailAddress,
           passWord:action.passWord
         }
-      });
+      }
+    );
 
     default:
       return state;

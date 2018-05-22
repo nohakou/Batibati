@@ -7,12 +7,13 @@ import { composeWithDevTools } from 'remote-redux-devtools';
 import { appReducer }from './app/reducers/appReducer.js'
 import SignUp from './app/components/Auth/authContainer';
 import Welcome from './app/components/Auth/Welcome';
-
+import singleTeam from './app/components/singleTeam/singleTeam';
 
 const Scenes = Actions.create(
   <Scene key='main'>
     <Scene key='Signup' component={ SignUp }/>
     <Scene key='Welcome' initial={true} component={ Welcome }/>
+    <Scene key='singleTeam' component={ singleTeam }/>
   </Scene>
 );
 
