@@ -3,18 +3,19 @@ import { connect } from 'react-redux';
 import { createUser } from './../../actions/authAction';
 import SignUp from './SignUp';
 
+
 const mapStateToProps = (state) => {
   return {
-      teamName:state.teamName,
-      emailAddress:state.emailAddress,
-      passWord:state.passWord
+      teamName:state.user.teamName,
+      emailAddress:state.email,
+      passWord:state.password
     }
   };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPress(teamName,emailAddress,passWord){
-      dispatch(createUser(teamName,emailAddress,passWord));
+    onPress(data){
+      dispatch(createUser(data));
     }
   };
 }

@@ -1,24 +1,25 @@
-import * as actionTypes from './../actions/authActionTypes';
+import * as t from './../actions/authActionTypes';
+import { AsyncStorage } from 'react-native';
 
-const initialState = {
-    user : {
-      teamName: '',
-      emailAddress:'',
-      passWord:''
-  }
-}
+let initialState = { isLoggedIn: false, user:null };
 
-export const authReducer = (state = initialState, action) => {
+export default const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.CREATE_USER:
-      return Object.assign({},state,{
-        user : {
-          teamName:action.teamName,
-          emailAddress:action.emailAddress,
-          passWord:action.passWord
-        }
-      }
-    );
+    case t.LOGGED_IN: {
+      const user = action.data;
+
+      AsyncStorage.multiSet([
+        ['user', JSON.stringfy(user)]
+      ]);
+
+      return {...state, isLoggedIn: true, user:user };
+    }
+    case t.LOGGED_OUT: {
+      let keys = ['user'];
+      AsyncStorage.multiRemove(keys);
+
+      return {...state, isLoggedIn: false, user:null };
+    }
 
     default:
       return state;
