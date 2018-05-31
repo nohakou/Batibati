@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
+import ReduxThunk from 'redux-thunk';
 import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 import { composeWithDevTools } from 'remote-redux-devtools';
 import { appReducer }from './app/reducers/appReducer.js'
@@ -18,8 +19,9 @@ const Scenes = Actions.create(
 );
 
 const ConnectedRouter = connect()(Router);
-const composeEnhancers = composeWithDevTools({realtime: true});
-const store = createStore(appReducer, composeEnhancers(applyMiddleware(logger)));
+const store = createStore(appReducer, applyMiddleware(ReduxThunk,logger));
+console.log(store);
+console.log(ReduxThunk);
 
 export default class App extends Component {
   render(){

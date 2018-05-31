@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 
 export default class SignUp extends Component {
   state = {
-    teamName: '',
-    emailAddress: '',
-    passWord: ''
+    team : {
+      teamName: '',
+      emailAddress: '',
+      passWord: ''
+    }
   }
-
+    
   render() {
     const { onPress } = this.props;
     return (
@@ -15,17 +17,17 @@ export default class SignUp extends Component {
         <View>
           <View>
             <Text>チーム名</Text>
-            <TextInput onChangeText={(text) => this.setState({teamName: text})}/>
+            <TextInput onChangeText={(text) => this.setState({team: Object.assign({},this.state.team,{teamName:text})})}/>
           </View>
           <View>
             <Text>メールアドレス</Text>
-            <TextInput onChangeText={(text) => this.setState({emailAddress: text})}/>
+            <TextInput onChangeText={(text) => this.setState({team: Object.assign({},this.state.team,{emailAddress:text})})}/>
           </View>
           <View>
             <Text>パスワード</Text>
-            <TextInput onChangeText={(text) => this.setState({passWord: text})}/>
+            <TextInput onChangeText={(text) => this.setState({team: Object.assign({},this.state.team,{passWord:text})})}/>
           </View>
-          <TouchableOpacity onPress={() => { onPress(this.state.teamName,this.state.emailAddress,this.state.passWord);}}>
+          <TouchableOpacity onPress={() => { onPress(this.state.team);}}>
             <Text>参戦する</Text>
           </TouchableOpacity>
         </View>
